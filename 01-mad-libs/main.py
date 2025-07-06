@@ -1,28 +1,37 @@
-def get_input(word_type: str):
-    user_input: str = input(f"Enter a {word_type}: ")
+def get_input(tipo_palavra: str):
+    user_input: str = input(f"Insira um {tipo_palavra}: ")
     return user_input
 
 
-noun1 = get_input("noun")
-adjective1 = get_input("adjective")
-verb1 = get_input("verb")
-noun2 = get_input("noun")
-verb2 = get_input("verb")
+def main():
+    nome = get_input("nome")
+    profissao = get_input("profissão")
+    adjetivo = get_input("adjetivo")
+    verbo1 = get_input("verbo no passado")
+    substantivo1 = get_input("substantivo")
+    verbo2 = get_input("verbo no infinitivo")
+    animal = get_input("animal")
+    cor = get_input("cor")
+    substantivo2 = get_input("substantivo no plural")
+    verbo3 = get_input("verbo no infinitivo")
+    lugar = get_input("lugar")
+    objeto = get_input("objeto mágico")
+    frase = get_input("frase de efeito")
 
-story = f"""
-Once upon a time, there was a {adjective1} {noun1} who loved to {verb1} all day.
+    story = f"""
+    O explorador {nome}, um(a) renomado(a) {profissao}, sempre sonhou em encontrar a lendária Selva Proibida. 
+    Um dia, com seu chapéu {adjetivo} e sua mochila repleta de mapas 
+    antigos, ele(a) {verbo1} sem olhar para trás. Mal sabia que enfrentaria um(a) {substantivo1} logo na entrada da floresta.
 
-One day, {noun2} walked into the room and caught the {noun1} in the act. 
+    Com coragem e um pouco de sorte, conseguiu {verbo2} por entre os cipós e escapar de um ataque de {animal} selvagens com pelos {cor}. 
+    Mais adiante, encontrou uma aldeia abandonada, onde só restavam {substantivo2} espalhados pelo chão, como pistas de um mistério antigo.
 
-{noun2}: "What are you doing?"
-{noun1}: "I'm just {verb1}ing, what's the big deal?"
-{noun2}: "Well, it's not every day that you see a {noun1} {verb1}ing in the middle of the day."
-{noun1}: "I guess you're right. Maybe I should take a break."
-{noun2}: "That's probably a good idea. Why don't we go {verb2} instead?"
-{noun1}: "Sure, that sounds like fun!"
+    Determinado(a) a {verbo3} até o fim, {nome} seguiu em direção ao {lugar}. Lá, encontrou o {objeto}, o artefato sagrado que todos diziam ser apenas uma lenda. 
+    Ao segurá-lo, sentiu um poder indescritível e disse em voz alta: "{frase}!". A selva inteira pareceu responder, como se reconhecesse o verdadeiro guardião do segredo.
+    """
+    
+    print(story)
 
-And so, {noun2} and the {noun1} went off to {verb2} and had a great time. 
-The end.
-"""
+if __name__ == '__main__':
+    main()
 
-print(story)
