@@ -19,15 +19,21 @@ def main():
     frase = get_input("frase de efeito")
 
     story = f"""
-    O explorador {nome}, um(a) renomado(a) {profissao}, sempre sonhou em encontrar a lendária Selva Proibida. 
+    O explorador {nome}, um(a) renomado(a) {profissao}, sempre sonhou em encontrar 
+    a lendária Selva Proibida. 
     Um dia, com seu chapéu {adjetivo} e sua mochila repleta de mapas 
-    antigos, ele(a) {verbo1} sem olhar para trás. Mal sabia que enfrentaria um(a) {substantivo1} logo na entrada da floresta.
+    antigos, ele(a) {verbo1} sem olhar para trás. Mal sabia que enfrentaria um(a) 
+    {substantivo1} logo na entrada da floresta.
 
-    Com coragem e um pouco de sorte, conseguiu {verbo2} por entre os cipós e escapar de um ataque de {animal} selvagens com pelos {cor}. 
-    Mais adiante, encontrou uma aldeia abandonada, onde só restavam {substantivo2} espalhados pelo chão, como pistas de um mistério antigo.
+    Com coragem e um pouco de sorte, conseguiu {verbo2} por entre os cipós e 
+    escapar de um ataque de {animal} selvagens com pelos {cor}. 
+    Mais adiante, encontrou uma aldeia abandonada, onde só restavam {substantivo2} 
+    espalhados pelo chão, como pistas de um mistério antigo.
 
-    Determinado(a) a {verbo3} até o fim, {nome} seguiu em direção ao {lugar}. Lá, encontrou o {objeto}, o artefato sagrado que todos diziam ser apenas uma lenda. 
-    Ao segurá-lo, sentiu um poder indescritível e disse em voz alta: "{frase}!". A selva inteira pareceu responder, como se reconhecesse o verdadeiro guardião do segredo.
+    Determinado(a) a {verbo3} até o fim, {nome} seguiu em direção ao {lugar}. 
+    Lá, encontrou o {objeto}, o artefato sagrado que todos diziam ser apenas uma lenda. 
+    Ao segurá-lo, sentiu um poder indescritível e disse em voz alta: "{frase}!". 
+    A selva inteira pareceu responder, como se reconhecesse o verdadeiro guardião do segredo.
     """
     
     print(story)
