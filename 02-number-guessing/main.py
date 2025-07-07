@@ -49,11 +49,15 @@ def playing(guess: int, numero_gerado: int) -> None:
 
 
 def main():
-    menor, maior = choosing_range()
-    numero_gerado = generating_number(menor, maior)
-    palpite = guessing()
-    playing(palpite, numero_gerado)
-
+    while True:
+        menor, maior = choosing_range()
+        numero_gerado = generating_number(menor, maior)
+        palpite = guessing()
+        playing(palpite, numero_gerado)
+        
+        continuar = int(input("Digite 1 para encerrar."))
+        if continuar == 1:
+            break
 
 if __name__ == '__main__':
     main()
