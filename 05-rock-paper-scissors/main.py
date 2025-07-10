@@ -7,7 +7,7 @@ class PPT:
 
         self.moves: dict = {'pedra': '🪨' , 'papel': '📜', 'tesoura': '✂️'}
         self.valid_moves: list[str] = list(self.moves.keys())   
-        
+
 
     def jogar_jogo(self):
         movimento_usuario: str = input("Pedra, papel ou tesoura?").lower().strip()
