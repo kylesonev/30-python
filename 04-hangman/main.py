@@ -4,13 +4,13 @@ from random import choice
 def list_words(quantidade: int) -> list[str]:
     lista: list = []
     for _ in range(quantidade):
-        palavra:str = input("Digite uma palavra para inserir na lista do jogo: ")
+        palavra: str = input("Digite uma palavra para inserir na lista do jogo: ")
         lista.append(palavra)
 
     return lista
 
 
-def run_game(quantidade: int, lista: list[str]):
+def run_game(lista: list[str]):
     palavra: str = choice(lista)
 
     certo: str = ""
@@ -18,12 +18,10 @@ def run_game(quantidade: int, lista: list[str]):
 
     while tentativas > 0:
         vazias: int = 0
-
-        print("Palavra: ", end='')
-
+        print("Palavra: ", end="")
         for char in palavra:
             if char in certo:
-                print(char, end='')
+                print(char, end="")
             else:
                 print("_", end="")
                 vazias += 1
@@ -31,7 +29,7 @@ def run_game(quantidade: int, lista: list[str]):
 
         if vazias == 0:
             print("Você acertou!!! ")
-            break   
+            break
 
         palpite: str = input("Digite uma letra: ")
 
@@ -43,21 +41,18 @@ def run_game(quantidade: int, lista: list[str]):
         if palpite not in palavra:
             tentativas -= 1
             print(f"Desculpe, você errou... {tentativas}  restantes.")
-            
             if tentativas == 0:
                 print("Você perdeu...")
                 break
 
 
-def main():
+def main() -> None:
     nome: str = input("Qual o seu nome? ")
     print(f"Bem-vindo(a) {nome}")
     quantidade: int = int(input("Digite a quantidade de palavras: "))
     palavras_jogo: list[str] = list_words(quantidade)
-    run_game(quantidade, palavras_jogo)
+    run_game(palavras_jogo)
 
 
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

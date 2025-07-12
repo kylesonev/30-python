@@ -1,3 +1,4 @@
+from os import supports_dir_fd
 from random import choice
 import sys
 
@@ -34,8 +35,6 @@ class PPT:
         print(f"Máquina: {self.moves[movimento_maquina]}")
         print("----------")
 
-
-
     def checar_movimentos(self, movimento_usuario: str, movimento_maquina: str):
         if movimento_usuario == movimento_maquina:
             print("Empatou!!!")
@@ -54,3 +53,4 @@ if __name__ == '__main__':
 
     while True:
         ppt.jogar_jogo()
+
