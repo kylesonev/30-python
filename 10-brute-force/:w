@@ -1,0 +1,8 @@
+def palpite_comun(palavra: str):
+    return palavra
+
+
+asdf
+
+
+print("lala")
