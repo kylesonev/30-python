@@ -1,5 +1,6 @@
 from random import randint
 
+
 def choosing_range() -> tuple[int, int]:
     print("Vamos escolher o alcance do número que será gerado.\n")
     while True:
@@ -8,16 +9,16 @@ def choosing_range() -> tuple[int, int]:
             maior = int(input("Digite o maior número: "))
             if menor >= maior:
                 print("O menor número de ser menor que o maior!")
-                continue    
+                continue
 
-            return menor, maior    
-    
+            return menor, maior
+
         except ValueError:
             print("Digite um número inteiro!!!")
             return choosing_range()
 
 
-def generating_number(menor:int, maior:int) -> int:
+def generating_number(menor: int, maior: int) -> int:
     numero_gerado = randint(menor, maior)
     return numero_gerado
 
@@ -54,10 +55,11 @@ def main():
         numero_gerado = generating_number(menor, maior)
         palpite = guessing()
         playing(palpite, numero_gerado)
-        
+
         continuar = int(input("Digite 1 para encerrar."))
         if continuar == 1:
             break
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

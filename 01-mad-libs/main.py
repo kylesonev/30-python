@@ -35,22 +35,9 @@ def main():
     Ao segurá-lo, sentiu um poder indescritível e disse em voz alta: "{frase}!". 
     A selva inteira pareceu responder, como se reconhecesse o verdadeiro guardião do segredo.
     """
-    
+
     print(story)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-

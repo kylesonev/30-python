@@ -1,4 +1,3 @@
-import csv
 import requests
 from fake_useragent import UserAgent
 from http import HTTPStatus
@@ -51,4 +50,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-        
+    
