@@ -31,10 +31,10 @@ def get_status_description(status_code: int) -> str:
     return '(???) Código de status desconhecido'
 
 
-
 def check_website(website: str, user_agent):
     try:
-        code: int = requests.get(website, headers={'User-Agente': user_agent}).status_code
+        code: int = requests.get(
+            website, headers={'User-Agente': user_agent}).status_code
         print(website, get_status_description(code))
     except Exception:
         print(f"Não foi possível obter informações para o site: {website}")
@@ -50,4 +50,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
