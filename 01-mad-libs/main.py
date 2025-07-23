@@ -1,9 +1,31 @@
-def get_input(tipo_palavra: str):
+"""
+Gerador de histórias no estilo 'Mad Libs'
+
+O usuário é solicitado a inserir diversas palavras de tipos diferentes.
+Assim sendo criada uma história divertida apartir das palavras inseridas.
+
+"""
+
+
+def get_input(tipo_palavra: str) -> str:
+    """
+    Solicita ao usuário que insira uma palavra de um determinado Tipo.
+
+    Args:
+        tipos_palavra(str): O tipo da palavra que será recebido
+
+    Returns:
+        str: Retorna a palavra inserida pelo usuário.
+
+    """
     user_input: str = input(f"Insira um {tipo_palavra}: ")
     return user_input
 
 
 def main():
+    """
+    Executa a lógica do programa Mad Libs.
+    """
     nome = get_input("nome")
     profissao = get_input("profissão")
     adjetivo = get_input("adjetivo")
