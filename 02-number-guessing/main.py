@@ -3,19 +3,19 @@ from random import randint
 
 def choosing_range() -> tuple[int, int]:
     print("Vamos escolher o alcance do número que será gerado.\n")
+    print("Você deverá selecionar o menor e o maior número possível.")
+    print("---------------------------------------------------------------")
     while True:
         try:
             menor = int(input("Digite o menor número: "))
             maior = int(input("Digite o maior número: "))
             if menor >= maior:
                 print("O menor número de ser menor que o maior!")
-                continue
-
-            return menor, maior
+            else:
+                return menor, maior
 
         except ValueError:
             print("Digite um número inteiro!!!")
-            return choosing_range()
 
 
 def generating_number(menor: int, maior: int) -> int:
@@ -24,12 +24,11 @@ def generating_number(menor: int, maior: int) -> int:
 
 
 def guessing() -> int:
-    try:
-        guess = int(input("\nDigite o seu palpite inicial: "))
-        return guess
-    except ValueError:
-        print("Digite um número inteiro!")
-        return guessing()
+    while True:
+        try:
+            return int(input("\nDigite o seu palpite inicial: "))
+        except ValueError:
+            print("Digite um número inteiro!")
 
 
 def playing(guess: int, numero_gerado: int) -> None:
@@ -56,8 +55,15 @@ def main():
         palpite = guessing()
         playing(palpite, numero_gerado)
 
-        continuar = int(input("Digite 1 para encerrar."))
-        if continuar == 1:
+        while True:
+            continuar = input("Deseja continuar? (s/n): ").lower().strip()
+            if continuar in ("s", "n"):
+                break
+            else:
+                print("Digite uma resposta válida!")
+
+        if continuar == "n":
+            print("Valeu por jogar!")
             break
 
 
