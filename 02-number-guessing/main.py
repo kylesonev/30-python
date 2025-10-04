@@ -16,9 +16,8 @@ def choosing_range() -> tuple[int, int]:
     Returns:
         tuple(menor, maior): O menor e maior número a ser gerado.
     """
-    print("Vamos escolher o alcance do número que será gerado.\n")
+    print("\nVamos escolher o alcance do número que será gerado.\n")
     print("Você deverá selecionar o menor e o maior número possível.")
-    print("---------------------------------------------------------------")
     while True:
         try:
             menor = int(input("Digite o menor número: "))
@@ -74,7 +73,8 @@ def playing(guess: int, numero_gerado: int) -> None:
             guess = int(input("\nDigite um número maior... "))
             contador += 1
         else:
-            print("Parabéns, você acertou!!!")
+            print("---------------------------------------------------------")
+            print("\nParabéns, você acertou!!!")
             print(f"O número era  {numero_gerado}")
             print(f"Você precisou de {contador} tentativas para acertar!")
             break
@@ -89,7 +89,7 @@ def main():
         playing(palpite, numero_gerado)
 
         while True:
-            continuar = input("Deseja continuar? (s/n): ").lower().strip()
+            continuar = input("\nDeseja continuar? (s/n): ").lower().strip()
             if continuar in ("s", "n"):
                 break
             else:
