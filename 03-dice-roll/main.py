@@ -1,10 +1,16 @@
+"""
+Rolar dados
+O usuário insere a quantidade de dados de 6 lados que será rolado.
+"""
+
+
 from random import randint
 
 
 def get_quantity() -> int:
     while True: 
         try:
-            quantidade = int(input("Quantos dados gostaria de rolar? "))
+            quantidade = int(input("\nQuantos dados gostaria de rolar? "))
             
             if quantidade <= 0:
                 print("Insira um número maior que 0...")
