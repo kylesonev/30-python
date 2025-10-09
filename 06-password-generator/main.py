@@ -1,51 +1,79 @@
-import string 
+import string
 import secrets
 
-def contem_maiuscula(senha: str) -> bool:
 
-    for char in senha:
-        if char.isupper():
-            return True
+def gerar_senha(tamanho: int, nivel: int) -> str:
+    """
+    A senha será gerada de acordo com o tamanho e nível inseridos pelo usuário.
+    Args:
+        tamanho(int): o tamanho que a senha terá, devendo ser maior que 6.
+        nivel(int): o nível que a senha terá, sendo:
+        - Fraca (minúsculas e números)
+        - Média (minúsculas, maiúsculas e números)
+        - Forte (minúsculas, maiúsculas, números e caracteres especiais)
+    Returns:
+        senha(str): senha gerada de acordo com o número e nível
+    """
 
-    return False
+    senha = ""
+    if nivel == 1:
+        combinacao: str = string.ascii_lowercase + string.digits
 
+    if nivel == 2:
+        combinacao: str = string.ascii_letters + string.digits
 
-def contem_simbolo(senha: str) -> bool:
-    
-    for char in senha:
-        if char in string.punctuation:
-            return True
-    
-    return False
+    if nivel == 3:
+        combinacao: str = string.ascii_letters + string.digits + string.punctuation
 
-
-def gerar_senha(tamanho: int, simbolos: bool, maiuscula: bool) -> str:
-
-    combinacao: str = string.ascii_lowercase + string.digits
-
-
-    if simbolos:
-        combinacao += string.punctuation
-
-    if maiuscula:
-        combinacao += string.ascii_uppercase
-
-    combinacao_comprimento: int = len(combinacao)
-
-    nova_senha: str = ''
-
-    for _ in range(tamanho):
-        nova_senha += combinacao[secrets.randbelow(combinacao_comprimento)]
-
-    
-    return nova_senha
+    return senha.join(secrets.choice(combinacao) for _ in range(tamanho))
 
 
 
-if __name__ == '__main__':
-    for i in range(1):
-        n_senha: str = gerar_senha(tamanho=12, simbolos=True, maiuscula=True)
-        specs: str = f"M: {contem_maiuscula(n_senha)}, S: {contem_simbolo(n_senha)}"
+def main():
+    """
+    Executa a lógica do programa.
+    1. O usuário indica quantas senhas gostaria de criar.
+    2. O usuário indica o número de caracteres que a senha deverá conter.
+    3. O usuário indica a força da senha.
+    4. As senhas são geradas e mostradas na tela.
+    """
+    while True:
+        try:
+            total_senhas: int = int(input("Quantas senhas deseja gerar? "))
+            if total_senhas <= 0:
+                print("Digite um total de senhas maior que 0!")
+                continue
 
-        print(len(n_senha))
-        print(f"{i} -> {n_senha} ({specs})")
+            tamanho: int = int(
+                input(
+                    "\nInsira o número de caracteres que a senha deve conter(mínimo 6): "
+                )
+            )
+            if tamanho <= 5:
+                print("Digite um tamanho maior que 0!")
+                continue
+
+            print(
+                "\nSelecione o nível da senha: \n"
+                "1 - Fraca: contém Letras minúsculas e números \n"
+                "2 - Média: contém Letras minúsculas, maiúsculas e números\n"
+                "3 - Forte: contém Letras minúsculas, maiúsculas, números e caracteres especiais"
+            )
+            nivel: int = int(input())
+            if nivel not in [1, 2, 3]:
+                print("Digite um nível válido!")
+                continue
+            break
+
+        except ValueError:
+            print("Digite um número válido!")
+
+    print("\nSenhas geradas:\n" + "-" * 20)
+
+    for _ in range(total_senhas):
+        senha = gerar_senha(tamanho=tamanho, nivel=nivel)
+        print(senha)
+
+
+if __name__ == "__main__":
+    main()
