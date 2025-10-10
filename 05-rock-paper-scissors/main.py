@@ -8,7 +8,8 @@ class PPT:
         Inicializa os atributos inicias da classe PPT.
         """
         print("Bem-vindo(a) ao Pedra-Papel-Tesoura!\n")
-        self.moves: dict[str, str] = {"pedra": "🪨", "papel": "📜", "tesoura": "✂️"}
+        self.moves: dict[str, str] = {
+            "pedra": "🪨", "papel": "📜", "tesoura": "✂️"}
         self.valid_moves: list[str] = list(self.moves.keys())
         self.empate: int = 0
         self.vitoria: int = 0
