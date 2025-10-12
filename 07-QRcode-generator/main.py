@@ -6,7 +6,6 @@ import qrcode
 
 
 class MyQR:
-
     def __init__(self, size: int, padding: int) -> None:
         """
         Inicializa os atributos da classe MyQR

@@ -1,52 +1,83 @@
+"""
+Verificador de status de Sites.
+"""
+
 import requests
 from fake_useragent import UserAgent
 from http import HTTPStatus
+import csv
 
 
-def get_websites(csv_path: str) -> list[str]:
-
+def receber_sites(csv_path: str) -> list[str]:
+    """
+    Recebe a lista dos sites.
+    Args:
+        csv_path(str): arquivo csv contendo a lista dos sites.
+    Returns:
+        list(str): lista com os endereços dos sites.
+    """
     websites: list[str] = []
-    with open(csv_path, 'r') as file:
+    with open(csv_path, "r") as file:
         reader = csv.reader(file)
         for linha in reader:
-            if "https://" not in linha[1] or 'http://' in linha[1]:
-                websites.append(f'https://{linha[1]}')
+            if "https://" not in linha[1] or "http://" in linha[1]:
+                websites.append(f"https://{linha[1]}")
             else:
                 websites.append(linha[1])
 
         return websites
 
 
-def get_user_agent() -> str:
+def receber_user_agent() -> str:
+    """
+    Receber o agente.
+    """
     ua = UserAgent()
     return ua.firefox
 
 
-def get_status_description(status_code: int) -> str:
+def gerar_descricao_site(status_code: int) -> str:
+    """
+    Gerar a descrição do site.
+    Args:
+        status_code(int): código de status do site.
+    Returns:
+        str: descrição de status.
+    """
     for value in HTTPStatus:
         if value == status_code:
-            description: str = f'({value} {value.name}) {value.description}'
+            description: str = f"({value} {value.name}) {value.description}"
             return description
 
-    return '(???) Código de status desconhecido'
+    return "(???) Código de status desconhecido"
 
 
-def check_website(website: str, user_agent):
+def checar_site(website: str, user_agent):
+    """
+    Verifica o site.
+    Args:
+        website(str): site a ser verificado.
+        user_agent: agente a ser utilizado.
+    """
     try:
         code: int = requests.get(
-            website, headers={'User-Agente': user_agent}).status_code
-        print(website, get_status_description(code))
+            website, headers={"User-Agent": user_agent}
+        ).status_code
+        print(website, gerar_descricao_site(code))
     except Exception:
         print(f"Não foi possível obter informações para o site: {website}")
 
 
 def main():
-    sites: list[str] = get_websites('08-websites-checker/websites.csv')
-    user_agent = get_user_agent()
+    """
+    Executa a lógica do programa
+    """
+    sites: list[str] = receber_sites("~/30-python/08-websites-checker/websites.csv")
+    user_agent = receber_user_agent()
 
     for site in sites:
-        check_website(site, user_agent)
+        checar_site(site, user_agent)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
