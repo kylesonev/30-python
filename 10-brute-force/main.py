@@ -3,20 +3,29 @@ import string
 import time
 
 
-def common_guess(word: str) -> str | None:
-    """Checks a file filled with common words"""
+def palpite_comum(palavra: str) -> str | None:
+    """
+    Verifica um arquivo cheio de palavras comuns e procura a palavra passada pelo usuário nesse arquivo
+    Args:
+        word(str): palavra que será crackeada.
 
-    with open("words.txt", "r") as words:
-        word_list: list[str] = words.read().splitlines()
+    Returns:
+        str: Retorna a posição da palavra no banco de palavras
+    """
 
-    for i, match in enumerate(word_list, start=1):
-        if match == word:
-            return f"Common match: {match} (#{i})"
+    with open("words.txt", "r") as palavras:
+        lista_palavras: list[str] = palavras.read().splitlines()
+
+    for i, match in enumerate(lista_palavras, start=1):
+        if match == palavra:
+            return f"Combinação: {match} (#{i})"
 
 
 # Goes through every combination of chars
-def brute_force(word: str, length: int, digits=False, symbols=False) -> str | None:
-    """Performs brute force on finding a word"""
+def forca_bruta(word: str, length: int, digits=False, symbols=False) -> str | None:
+    """
+    Executa força bruta para crackear uma palavra.
+    """
 
     # Modify this for total symbols
     chars: str = string.ascii_lowercase
@@ -28,30 +37,28 @@ def brute_force(word: str, length: int, digits=False, symbols=False) -> str | No
         chars += string.punctuation
 
     attempts: int = 0
-    for guess in itertools.product(chars, repeat=length):
+    for palpite in itertools.product(chars, repeat=length):
         attempts += 1
-        guess: str = "".join(guess)
+        guess: str = "".join(palpite)
 
         if guess == word:
-            return f'"{word}" was cracked in {attempts:,} guesses.'
-        # print(guess, attempts) # Comment this out when you're not testing
+            return f'"{word}" foi crackeada em {attempts:,} palpites.'
+        # print(guess, attempts) # Comentar se não estiver testando
 
 
 def main():
-    print("Searching...")
-    password: str = "pass1"
+    print("Procurando...")
+    password: str = "godofwar"
 
-    # Get the start time
     start_time: float = time.perf_counter()
 
-    # Search for common words before using the actual brute force
-    if common_match := common_guess(password):
+    if common_match := palpite_comum(password):
         print(common_match)
     else:
-        if cracked := brute_force(password, length=5, digits=True, symbols=False):
+        if cracked := forca_bruta(password, length=5, digits=True, symbols=False):
             print(cracked)
         else:
-            print("There was no match...")
+            print("Não houve combinação...")
 
     # Get the end time
     end_time: float = time.perf_counter()
