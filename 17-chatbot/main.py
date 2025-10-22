@@ -1,22 +1,45 @@
+"""
+Programa chat_bot
+Recebe uma mensagem do usuário e responde de acordo com o dicionário do bot.
+"""
+
 from difflib import get_close_matches
 
 # para fazer: carregar uma json com o dicionário
 
 
-def get_best_match(user_question: str, questions: dict) -> str | None:
-    questions: list[str] = [q for q in questions]
-    matches: list = get_close_matches(user_question, questions, n=1, cutoff=0.6)
+def pegar_melhor_resposta(pergunta_usuario: str, conhecimento: dict) -> str | None:
+    """
+    Pega a melhor resposta para o texto inserido pelo usuário
+    Args:
+        pergunta_usuario(str): texto inserido pelo usuário
+        conhecimento(dict): dicionário com a base de conhecimento do bot
+    Returns:
+        str: retorna a melhor resposta de acordo com o texto inserido pelo usuário
+    """
 
-    if matches:
-        return matches[0]
+    perguntas: list[str] = [q for q in conhecimento]
+    combinacoes: list = get_close_matches(pergunta_usuario, perguntas, n=1, cutoff=0.6)
+
+    if combinacoes:
+        return combinacoes[0]
 
 
 def chat_bot(knowledge: dict):
-    user_input: str = input("You: ")
-    best_match: str | None = get_best_match(user_input, knowledge)
+    """
+    Executa a lógica do Programa
+    1. Solicita um texto do usuário
+    2. Procura dentro da base de conhecimento uma combinação para o texto do usuário
+    3. Retorna a combinação ou uma mensagem dizendo que não entendeu...
 
-    if answer := knowledge.get(best_match):
-        print(f"Bot: {answer}")
+    """
+    usuario_entrada: str = input("You: ")
+    melhor_resposta: str | None = pegar_melhor_resposta(
+        pergunta_usuario=usuario_entrada, conhecimento=knowledge
+    )
+
+    if resposta := knowledge.get(melhor_resposta):
+        print(f"Bot: {resposta}")
     else:
         print("Eu não entendi...")
 
