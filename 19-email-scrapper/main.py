@@ -1,9 +1,14 @@
+"""
+Programa para extração automática de endereços de e-mail de páginas web.
+"""
+
 import re
 from typing import Final
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+
 
 EMAIL_REGEX: Final[
     str
@@ -15,7 +20,21 @@ a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9
 
 
 class Browser:
-    def __init__(self, driver: str):
+    """
+    Classe que gerencia o navegador Selenium para extração de e-mails.
+
+    Atributos|:
+        chrome_options (Options): Opções de configuração do navegador Chrome
+        service (Service): Serviço do ChromeDriver responsável por inicializar o navegador
+        browser (webdriver.Chrome): Instância do navegador Chrome controlada pelo Selenium
+    """
+
+    def __init__(self, driver: str) -> None:
+        """Inicializa o navegador Chrome em modo headless.
+
+        Args:
+            driver (str): Caminho para o executável do ChromeDriver
+        """
         print("Iniciando browser.")
         self.chrome_options = Options()
         self.chrome_options.add_argument("--headless")
@@ -28,7 +47,19 @@ class Browser:
         )
 
     def scrape_emails(self, url: str) -> set:
-        print(f"Vaculhando: {url} por emails")
+        """
+        Extrai endereços de e-mail válidos de uma página web.
+
+        Abre a URL fornecida, obtém o conteúdo HTML e utiliza uma expressão regular
+        para encontrar todos os endereços de e-mail válidos.
+
+        Args:
+            url (str): endereço da página a ser varrida
+
+        Returns:
+            set: Um conjunto de endereços de e-mail únicos encontrados na página
+        """
+        print(f"Vasculhando: {url} por emails")
         self.browser.get(url)
         page_source: str = self.browser.page_source
 
@@ -38,12 +69,21 @@ class Browser:
 
         return list_of_emails
 
-    def close_browser(self):
+    def close_browser(self) -> None:
+        """
+        Fecha o navegador controlado pelo Selenium
+        """
         print("Fechando o navegador...")
         self.browser.close()
 
 
 def main():
+    """
+    Função principal que executa o processo de scraping de e-mails.
+
+    Inicializa o navegador, acessa uma página de exemplo com e-mails gerados aleatoriamente,
+    extrai os endereços e exibe os resultados no terminal
+    """
     driver: str = "../19-email-scrapper/chromedriver"
     browser = Browser(driver=driver)
 
@@ -54,7 +94,8 @@ def main():
     for i, email in enumerate(emails, start=1):
         print(i, email, sep=": ")
 
+    browser.close_browser()
+
 
 if __name__ == "__main__":
     main()
-
